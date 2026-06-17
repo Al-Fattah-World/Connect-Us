@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect with Al Fattah Construction</title>
+    
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #040D21;
+            --primary-blue: #0056b3;
+            --primary-glow: rgba(0, 86, 179, 0.35);
+            --text-main: #FFFFFF;
+            --text-muted: #94A3B8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-hover-border: rgba(0, 86, 179, 0.5);
+            --glass-hover-bg: rgba(0, 86, 179, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Architectural Background Glows with subtle floating animation */
+        body::before, body::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 86, 179, 0.18) 0%, rgba(0,0,0,0) 70%);
+            z-index: 0;
+            pointer-events: none;
+            animation: pulseGlow 8s ease-in-out infinite alternate;
+        }
+        body::before { top: -15%; left: -15%; }
+        body::after { bottom: -15%; right: -15%; animation-delay: 4s; }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.15) translate(20px, 20px); }
+        }
+
+        /* Central Hub Container */
+        .link-tree-wrapper {
+            width: 100%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            padding: 45px 30px;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            z-index: 1;
+            transform: translateY(0);
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Branding Profile Layout */
+        .brand-profile {
+            margin-bottom: 28px;
+        }
+        .brand-logo {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            margin-bottom: 18px;
+            filter: drop-shadow(0 8px 16px rgba(0, 86, 179, 0.3));
+        }
+        .brand-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #D1D5DB 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .brand-tagline {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #3b82f6;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+        }
+
+        /* Welcome Message Box */
+        .welcome-msg {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 32px;
+            padding: 0 10px;
+            font-weight: 400;
+        }
+
+        /* Interactive Link Array */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 10px;
+        }
+
+        .hub-link-card {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .hub-link-item {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 18px 22px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hub-link-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            border-radius: 12px;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .hub-link-text {
+            text-align: left;
+            flex-grow: 1;
+        }
+        .hub-link-text h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+            letter-spacing: 0.2px;
+        }
+        .hub-link-text p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .hub-link-arrow {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            opacity: 0.3;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease, color 0.3s ease;
+        }
+
+        /* Hover Micro-Interactions Code */
+        .hub-link-card:hover {
+            transform: translateY(-4px);
+        }
+        .hub-link-card:hover .hub-link-item {
+            border-color: var(--glass-hover-border);
+            background: var(--glass-hover-bg);
+            box-shadow: 0 12px 30px rgba(0, 86, 179, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+        .hub-link-card:hover .hub-link-icon {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: #FFFFFF;
+            box-shadow: 0 0 15px var(--primary-glow);
+            transform: scale(1.05);
+        }
+        .hub-link-card:hover .hub-link-arrow {
+            opacity: 1;
+            color: #3b82f6;
+            transform: translateX(4px);
+        }
+
+        /* Clean Minimalist Custom Footer Copy */
+        .hub-footer {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 24px;
+            margin-top: 24px;
+        }
+
+        /* Adaptive Mobile Screens Query optimization */
+        @media (max-width: 480px) {
+            .link-tree-wrapper {
+                padding: 35px 20px;
+                border-radius: 24px;
+            }
+            .brand-title { font-size: 1.35rem; }
+            .welcome-msg { font-size: 0.82rem; margin-bottom: 24px; }
+            .hub-link-item { padding: 16px 18px; gap: 14px; }
+            .hub-link-icon { width: 40px; height: 40px; font-size: 1.05rem; border-radius: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="link-tree-wrapper">
+        
+        <!-- Center Profile Hub Head section -->
+        <div class="brand-profile">
+            <img class="brand-logo" src="images/logo.png" alt="Al Fattah Construction Logo">
+            <h1 class="brand-title">AL FATTAH CONSTRUCTION</h1>
+            <span class="brand-tagline">Innovation At Work</span>
+        </div>
+
+        <!-- Welcome Message Section -->
+        <p class="welcome-msg">
+            Welcome to our digital gateway. Connect with our engineering and management teams directly via the channels below to discuss your next project.
+        </p>
+
+        <!-- Links Gateway Group Container -->
+        <div class="links-container">
+
+            <!-- Gmail -->
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@alfattahconstruction.com" class="hub-link-card" target="_blank">
+                <div class="hub-link-item">
+                    <div class="hub-link-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="hub-link-text">
+                        <h3>Email Us</h3>
+                        <p>info@alfattahconstruction.com</p>
+                    </div>
+                    <div class="hub-link-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Mobile 1 -->
+            <a href="tel:+919500669260" class="hub-link-card">
+                <div class="hub-link-item">
+                    <div class="hub-link-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="hub-link-text">
+                        <h3>Mobile 1</h3>
+                        <p>+91 95006 69260</p>
+                    </div>
+                    <div class="hub-link-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Mobile 2 -->
+            <a href="tel:+91XXXXXXXXXX" class="hub-link-card">
+                <div class="hub-link-item">
+                    <div class="hub-link-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="hub-link-text">
+                        <h3>Mobile 2</h3>
+                        <p>+91 XXXXXXXXXX</p>
+                    </div>
+                    <div class="hub-link-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/alfattahconstruction" target="_blank" class="hub-link-card">
+                <div class="hub-link-item">
+                    <div class="hub-link-icon"><i class="fa-brands fa-instagram"></i></div>
+                    <div class="hub-link-text">
+                        <h3>Instagram</h3>
+                        <p>@alfattahconstruction</p>
+                    </div>
+                    <div class="hub-link-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- Clean Minimalist Footer -->
+        <div class="hub-footer">
+            &copy; 2026 Al Fattah Construction. All Rights Reserved.
+        </div>
+
+    </div>
+
+</body>
+</html>
