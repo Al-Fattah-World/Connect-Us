@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
+            --bg-canvas: #F1F5F9;
             --navy: #0F172A;
             /* Exact blue color sampled directly from your brand asset */
             --blue-brand: #005293; 
@@ -17,53 +18,17 @@
             --shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
         body {
-            position: relative;
+            background-color: var(--bg-canvas);
+            color: var(--navy);
+            font-family: 'Inter', sans-serif;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 40px 20px;
-            font-family: 'Inter', sans-serif;
-            color: var(--navy);
-            overflow-x: hidden;
-            background-color: #0c192c; /* Fallback baseline dark hue */
         }
-
-        /* --- BACKGROUND LAYER INTEGRATION MTRX --- */
-        .bg-layer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('images/bg12.png') center/cover no-repeat;
-            z-index: -2;
-            transform: scale(1.02); /* Eliminates edge bleeding artifacts */
-            opacity: 0.35; /* Adjusted upward to bring out more detail from the raw background asset */
-        }
-        .bg-overlay {
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(
-        135deg,
-        rgba(248, 250, 252, 0.45),
-        rgba(226, 232, 240, 0.55)
-    );
-    z-index: -1;
-}
-
-        /* --- STRUCTURE & ALIGNMENT PATHWAYS --- */
-        .wrapper { 
-            width: 100%; 
-            max-width: 440px; 
-            text-align: center; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+        .wrapper { width: 100%; max-width: 450px; text-align: center; }
         
         /* INCREASED LOGO BOX SIZE HERE */
         .logo-box { 
@@ -74,17 +39,14 @@
             border-radius: 28px; 
             margin: 0 auto 20px; 
             box-shadow: var(--shadow); 
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         .logo { width: 100%; height: 100%; object-fit: contain; }
         
-        .title { font-family: 'Poppins', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
-        .tagline { font-size: 0.75rem; color: var(--blue-brand); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; display: block; }
-        .msg { font-size: 0.9rem; color: #000000; line-height: 1.6; margin-bottom: 35px; max-width: 380px; }
+        .title { font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--navy); }
+        .tagline { font-size: 0.75rem; color: var(--blue-brand); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; display: block; }
+        .msg { font-size: 0.88rem; color: #475569; line-height: 1.6; margin-bottom: 35px; }
         
-        .links { display: flex; flex-direction: column; gap: 14px; width: 100%; }
+        .links { display: flex; flex-direction: column; gap: 14px; }
         
         /* Updated full card layout with brand blue background */
         .card { 
@@ -94,10 +56,8 @@
             border-radius: 20px; 
             box-shadow: 0 6px 20px rgba(0, 82, 147, 0.15); 
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
-            width: 100%;
-            display: block;
         }
-        .item { padding: 18px 24px; display: flex; align-items: center; gap: 16px; }
+        .item { padding: 20px 24px; display: flex; align-items: center; gap: 16px; }
         
         /* Icon container white backdrop glass variant */
         .icon-wrap { 
@@ -109,76 +69,49 @@
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            font-size: 1.15rem; 
-            flex-shrink: 0;
+            font-size: 1.1rem; 
             transition: all 0.25s ease; 
         }
         
-        .text { text-align: left; flex-grow: 1; min-width: 0; /* Prevents overflow wrap calculations breaking layout bounds */ }
-        .text h3 { font-size: 0.95rem; font-weight: 600; font-family: 'Poppins', sans-serif; color: #FFFFFF; margin-bottom: 1px; }
+        .text { text-align: left; flex-grow: 1; }
+        .text h3 { font-size: 0.95rem; font-weight: 600; font-family: 'Poppins', sans-serif; color: #FFFFFF; }
         /* Clean secondary typography visibility over dark blue button base */
-        .text p { font-size: 0.82rem; color: rgba(255, 255, 255, 0.8); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } 
-        .arrow { font-size: 0.85rem; color: rgba(255, 255, 255, 0.7); transform: scale(0.8); flex-shrink: 0; transition: all 0.25s ease; }
+        .text p { font-size: 0.82rem; color: rgba(255, 255, 255, 0.75); } 
+        .arrow { font-size: 0.85rem; color: rgba(255, 255, 255, 0.7); transform: scale(0.8); transition: all 0.25s ease; }
         
         /* Premium Hover State Transitions */
         .card:hover { 
-            transform: translateY(-3px); 
+            transform: translateY(-3px) scale(1.01); 
             background: var(--blue-hover);
-            box-shadow: 0 12px 26px rgba(0, 82, 147, 0.25); 
+            box-shadow: 0 12px 26px rgba(0, 82, 147, 0.3); 
         }
         .card:hover .icon-wrap { 
             background: rgba(255, 255, 255, 0.25);
-            transform: scale(1.02);
+            transform: scale(1.05);
         }
         .card:hover .arrow { 
             color: #FFFFFF; 
             transform: scale(1) translateX(3px); 
         }
-        .footer { font-size: 0.78rem; color: #475569; margin-top: 40px; font-weight: 500; }
-
-        /* --- SMOOTH VIEWPORT RESPONSIVENESS MATRIX --- */
-        @media (max-width: 480px) {
-            body {
-                padding: 30px 16px;
-                align-items: flex-start; /* Better vertical layout handling on small devices */
-            }
-            .wrapper {
-                margin-top: 10px;
-            }
-            .logo-box {
-                width: 120px;
-                height: 120px;
-                border-radius: 24px;
-                margin-bottom: 16px;
-            }
-            .title { font-size: 1.45rem; }
-            .msg { margin-bottom: 30px; font-size: 0.85rem; }
-            .item { padding: 16px 20px; gap: 14px; }
-            .icon-wrap { width: 40px; height: 40px; font-size: 1.05rem; }
-            .text h3 { font-size: 0.9rem; }
-            .text p { font-size: 0.8rem; }
-        }
+        .footer { font-size: 0.78rem; color: #64748B; margin-top: 40px; }
     </style>
 </head>
 <body>
-
-    <div class="bg-layer"></div>
-    <div class="bg-overlay"></div>
-
     <div class="wrapper">
-        <div class="logo-box"><img class="logo" src="images/hd_logo.png" alt="Al Fattah Construction Logo"></div>
-        <h1 class="title">AL FATTAH CONSTRUCTION</h1>
-        <span class="tagline">Innovation At Work</span>
+        <div class="logo-box"><img class="logo" src="images/hd_logo.png" alt="Logo"></div>
+        <h1 class="title">AL FATTAH</h1>
+        <span class="tagline">Construction & Engineering</span>
         <p class="msg">Welcome to our corporate directory. Connect directly with project engineering teams and corporate operations.</p>
-        
         <div class="links">
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@alfattahconstruction.com" class="card" target="_blank">
+            <!-- Email (Dynamic Handler for PC & Mobile Apps) -->
+            <a href="#" id="emailLink" class="card">
                 <div class="item">
                     <div class="icon-wrap"><i class="fa-solid fa-envelope"></i></div>
                     <div class="text"><h3>Email Us</h3><p>info@alfattahconstruction.com</p></div>
                     <div class="arrow"><i class="fa-solid fa-chevron-right"></i></div>
                 </div>
             </a>
+            <!-- Phone Call -->
             <a href="tel:+919500669260" class="card">
                 <div class="item">
                     <div class="icon-wrap"><i class="fa-solid fa-phone"></i></div>
@@ -186,6 +119,7 @@
                     <div class="arrow"><i class="fa-solid fa-chevron-right"></i></div>
                 </div>
             </a>
+            <!-- WhatsApp -->
             <a href="https://wa.me/919500106675" class="card" target="_blank">
                 <div class="item">
                     <div class="icon-wrap"><i class="fa-brands fa-whatsapp"></i></div>
@@ -193,6 +127,7 @@
                     <div class="arrow"><i class="fa-solid fa-chevron-right"></i></div>
                 </div>
             </a>
+            <!-- Instagram -->
             <a href="https://www.instagram.com/alfattahconstruction" class="card" target="_blank">
                 <div class="item">
                     <div class="icon-wrap"><i class="fa-brands fa-instagram"></i></div>
@@ -200,7 +135,8 @@
                     <div class="arrow"><i class="fa-solid fa-chevron-right"></i></div>
                 </div>
             </a>
-            <a href="https://maps.app.goo.gl/d8efZA3PuJWj7CCf6" class="card" target="_blank">
+            <!-- Google Maps -->
+            <a href="https://www.google.com/maps/search/?api=1&query=Al+Fattah+Construction" class="card" target="_blank">
                 <div class="item">
                     <div class="icon-wrap"><i class="fa-solid fa-map-location-dot"></i></div>
                     <div class="text"><h3>Find Us</h3><p>Find us on Google Maps</p></div>
@@ -208,9 +144,26 @@
                 </div>
             </a>
         </div>
-        
-        <div class="footer">© 2026 Al Fattah Construction. All Rights Reserved.</div>
+        <div class="footer">&copy; 2026 Al Fattah Construction. All Rights Reserved.</div>
     </div>
-    
+
+    <!-- JavaScript to handle intelligent desktop vs mobile email routing -->
+    <script>
+        document.getElementById('emailLink').addEventListener('click', function(e) {
+            e.preventDefault(); 
+            var email = 'info@alfattahconstruction.com';
+            
+            // Comprehensive mobile detection regex
+            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // If on mobile, trigger native application link
+                window.location.href = 'mailto:' + email;
+            } else {
+                // If on desktop PC, bypass broken mailto and open direct web Gmail window
+                window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + email, '_blank');
+            }
+        });
+    </script>
 </body>
 </html>
